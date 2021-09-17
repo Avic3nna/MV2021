@@ -11,7 +11,7 @@ camHeight = 480;
 camWidth = 640;
 %% Import images
 
-blueImg = imread("pill_pic_blueyellow3.png");
+blueImg = imread("testresult3.png");
 orangeImg = imread("pill_pic_orange2.png");
 yellowImg = imread("pill_pic_blueyellow1.png");
 
@@ -33,11 +33,11 @@ blue_high = [60; 125; 140];
 blue_low = [20; 75; 80];
 
 % Orange color 
-orange_high = [190; 70; 10];
+orange_high = [210; 85; 10];
 orange_low = [140; 40; 0];
 
 % Yellow color  
-yellow_high = [180; 165; 80];
+yellow_high = [185; 165; 80];
 yellow_low = [120; 100; 20];
 
 
@@ -107,7 +107,7 @@ imshow(denoise_yellow)
 title('Yellow mask');
 %% Connected components + counting pills with a threshold of 2000 pixels
 
-THRESHOLD = 2000; % is this optimal threshold?
+THRESHOLD = 1500; % is this optimal threshold?
 
 blue_cc = bwconncomp(denoise_blue);
 numpixels_blue = cellfun(@numel, blue_cc.PixelIdxList);
