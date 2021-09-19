@@ -31,10 +31,7 @@ yellow_low = [120; 100; 20];
 % Select image to work with
 img = blueImg;
 
-figure
-imshow(img)
-title('Image to process');
-
+figur
 %% Extract pixels for each color
 
 % Zeroes framework for the image
@@ -75,7 +72,7 @@ end
 %% Pre-processing image erosion
 
 
-% 3x3 mask for erosion
+% 4x4 mask for erosion
 eroded_blue = imerode(blue_pill, strel('square',3)); %structuring element
 eroded_orange = imerode(orange_pill, strel('square',3)); %structuring element
 eroded_yellow = imerode(yellow_pill, strel('square',3)); %structuring element
@@ -84,9 +81,22 @@ eroded_yellow = imerode(yellow_pill, strel('square',3)); %structuring element
 denoise_blue = imnlmfilt(eroded_blue, 'ComparisonWindowSize',7);
 denoise_orange = imnlmfilt(eroded_orange, 'ComparisonWindowSize',7);
 denoise_yellow = imnlmfilt(eroded_yellow, 'ComparisonWindowSize',7);
+%% Display all images and ROI
+
+subplot(1,3,1);
+imshow(denoise_blue)
+title('Blue mask');
+
+subplot(1,3,2);
+imshow(denoise_orange)
+title('Orange mask');
+
+subplot(1,3,3);
+imshow(denoise_yellow)
+title('Yellow mask');
 %% Connected components + counting pills with a threshold of 2000 pixels
 
-THRESHOLD = 1500; % threshold through trial & error
+THRESHOLD = 1500; % is this optimal threshold?
 
 blue_cc = bwconncomp(denoise_blue);
 numpixels_blue = cellfun(@numel, blue_cc.PixelIdxList);
