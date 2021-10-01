@@ -53,7 +53,7 @@ for i=1:length(unique(clusters))
     
 end
 
-save_means = [save_means; mean_cluster, 1*ones(size(mean_cluster,1),1)];
+save_means = [save_means; mean_cluster, 1*ones(size(mean_cluster,1))];
 origin = mean_cluster(1,:);
 
 figure, 
@@ -87,7 +87,7 @@ for i=1:length(unique(clusters))
     %mean_cluster(i,2) = mean(cluster_data(clusters == i));
     
 end
-save_means = [save_means; mean_cluster, 2*ones(size(mean_cluster,1),1)];
+save_means = [save_means; mean_cluster, 2*ones(size(mean_cluster,1))];
 %save_means = [save_means 2*ones(size(mean_cluster,1))]
 hold on; plot(mean_cluster(:,1),mean_cluster(:,2),'r*'); title('Result')
 %% Dirk-jan his function template_matching
@@ -149,20 +149,13 @@ for i=1:length(unique(clusters))
     %mean_cluster(i,2) = mean(cluster_data(clusters == i));
     
 end
-save_means = [save_means; mean_cluster, 4*ones(size(mean_cluster,1),1)];
+save_means = [save_means; mean_cluster, 4*ones(size(mean_cluster,1))];
 hold on; plot(mean_cluster(:,1),mean_cluster(:,2),'b*'); title('Result')
 
 %% Compute manhattan distance
-manhattan_dist_pix = pdist2(origin,save_means(:,1:2),'cityblock'); %manhattan distance
+manhattan_dist_pix = pdist2(origin,save_means,'cityblock'); %manhattan distance
 
 
 pix_to_mm_ratio = 106/463;
 
 manhattan_dist_mm = manhattan_dist_pix*pix_to_mm_ratio;
-
-manhattan_dist_mm = [manhattan_dist_mm' save_means(:,3)]
-
-% 1 is empty
-% 2 is blue
-% 3 is orange
-% 4 is yellow
