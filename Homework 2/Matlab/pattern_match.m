@@ -1,0 +1,1 @@
+// Task 2 of the Machine Vision homework assignment, measuring pixels -> mm
