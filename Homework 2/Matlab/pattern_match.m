@@ -144,3 +144,4 @@ manhattan_dist_mm = [manhattan_dist_mm' save_means(:,3)]
 % 4 is yellow
 
 text(save_means(:,1) - 7,save_means(:,2) + 20,string(round(manhattan_dist_mm(:,1))))
+
